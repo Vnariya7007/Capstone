@@ -28,8 +28,28 @@
     background-color: rgb(190 18 60);
     color:white;
 }
-
+#btnDeleteDr{
+    background-color: rgb(190 18 60);
+    color:white;
+}
+#btnDeleteTrip{
+    background-color: rgb(190 18 60);
+    color:white;
+}
+#btnDeleteTrailer{
+    background-color: rgb(190 18 60);
+    color:white;
+}
 #btnUpdate{
+    background-color: rgb(28 132 199);
+}
+#btnUpdateDr{
+    background-color: rgb(28 132 199);
+}
+#btnUpdateTrip{
+    background-color: rgb(28 132 199);
+}
+#btnUpdateTrailer{
     background-color: rgb(28 132 199);
 }
 label.error {

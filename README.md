@@ -13,3 +13,5 @@
 5. Navigate to http://localhost/Capstone/login.html in your web browser 
 
 6. There! Login or Register to enter the website!
+
+Hope You Liked It!

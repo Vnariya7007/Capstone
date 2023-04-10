@@ -1,7 +1,8 @@
+// CRUD for add and modify TRUCK
 var Truck = {
     insert: function (options, callback) {
         function txFunction(tx) {
-            var creatTruck = "INSERT INTO truck (truckNumber, dateOfPurchase, makeAndModel, vinNum, dropDrId) VALUES(?, ?, ?, ?, ?)";
+            var creatTruck = "INSERT INTO truck (truckNumber, dateOfPurchase, makeAndModel, vinNum, assignedId) VALUES(?, ?, ?, ?, ?)";
             tx.executeSql(creatTruck, options, callback, errorHandler);
         }
 
@@ -14,7 +15,7 @@ var Truck = {
     },
     update: function (options, callback) {
         function txFunction(tx) {
-            var creatTruck = "UPDATE truck SET truckNumber=?, dateOfPurchase=?, makeAndModel=?, vinNum=?, dropDrId=?, WHERE id=?;";
+            var creatTruck = "UPDATE truck SET truckNumber=?, dateOfPurchase=?, makeAndModel=?, vinNum=?, assignedId=? WHERE id=?;";
             tx.executeSql(creatTruck, options, callback, errorHandler);
         }
 
@@ -62,11 +63,11 @@ var Truck = {
     }
 };
 
-
+// CRUD for add and modify TRIP
 var Trip = {
     insert: function (options, callback) {
         function txFunction(tx) {
-            var creatTrip = "INSERT INTO trip (truckNumber, startDate, endDate, tripDistance, fuelEfficiency, fuelPrice, fuelCost) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            var creatTrip = "INSERT INTO trip (truckNumber, startDate, endDate, startId, endId, tripDistance, fuelEfficiency, fuelPrice, fuelCost) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             tx.executeSql(creatTrip, options, callback, errorHandler);
         }
 
@@ -79,7 +80,7 @@ var Trip = {
     },
     update: function (options, callback) {
         function txFunction(tx) {
-            var creatTrip = "UPDATE trip SET truckNumber=?, startDate=?, endDate=?, tripDistance=?, fuelEfficiency=?, fuelPrice=?, fuelCost=? WHERE id=?;";
+            var creatTrip = "UPDATE trip SET truckNumber=?, startDate=?, endDate=?, startId=?, endId=?, tripDistance=?, fuelEfficiency=?, fuelPrice=?, fuelCost=? WHERE id=?;";
             tx.executeSql(creatTrip, options, callback, errorHandler);
         }
 
@@ -127,6 +128,7 @@ var Trip = {
     }
 };
 
+// CRUD for add and modify DRIVER
 var Driver = {
     insert: function (options, callback) {
         function txFunction(tx) {
@@ -191,10 +193,11 @@ var Driver = {
     }
 };
 
+// CRUD for add and modify TRAILER
 var Trailer = {
     insert: function (options, callback) {
         function txFunction(tx) {
-            var creatTrailer= "INSERT INTO trailer (TrailerNo, DateOfPurchase) VALUES(?, ?)";
+            var creatTrailer= "INSERT INTO trailer (TrailerNo, DateOfPurchase, goodsId) VALUES(?, ?, ?)";
             tx.executeSql(creatTrailer, options, callback, errorHandler);
         }
 
@@ -207,7 +210,7 @@ var Trailer = {
     },
     update: function (options, callback) {
         function txFunction(tx) {
-            var creatTrailer = "UPDATE trailer SET TrailerNo=?, DateOfPurchase=? WHERE id=?;";
+            var creatTrailer = "UPDATE trailer SET TrailerNo=?, DateOfPurchase=?, goodsId=? WHERE id=?;";
             tx.executeSql(creatTrailer, options, callback, errorHandler);
         }
 
@@ -254,17 +257,54 @@ var Trailer = {
         db.transaction(txFunction, errorHandler, successTransaction);
     }
 };
-var DropDr = {
+
+// DROP DOWN for driver
+var dropDr = {
     selectAll: function(options, callback){
         function txFunction(tx) {
             var createDropDr = "SELECT * FROM dropDr;";
             tx.executeSql(createDropDr, options, callback, errorHandler);
+
         }
         function successTransaction() {
             console.info("Success: selectAll Transaction is successful");
         }
         db.transaction(txFunction, errorHandler, successTransaction);
 
-    }   
+    }
+
+};
+
+// dropdown for goods
+var Goods = {
+    selectAll: function(options, callback){
+        function txFunction(tx) {
+            var createGoods = "SELECT * FROM goods;";
+            tx.executeSql(createGoods, options, callback, errorHandler);
+
+        }
+        function successTransaction() {
+            console.info("Success: selectAll Transaction is successful");
+        }
+        db.transaction(txFunction, errorHandler, successTransaction);
+
+    }
+
+};
+
+// dropdown for Location
+var Location = {
+    selectAll: function(options, callback){
+        function txFunction(tx) {
+            var createLocation = "SELECT * FROM location;";
+            tx.executeSql(createLocation, options, callback, errorHandler);
+
+        }
+        function successTransaction() {
+            console.info("Success: selectAll Transaction is successful");
+        }
+        db.transaction(txFunction, errorHandler, successTransaction);
+
+    }
 
 };

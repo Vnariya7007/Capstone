@@ -22,12 +22,9 @@ function pageTruckView_show() {
     showAllTruck();
 }
 
-function addTruckPage_click() {
-    updateDriverDropdown("Add");
-}
 function pageTruckDetail_show() {
+    updatedropDrDropdown("ModifyTruck");
     showOneTruck();
-    updateDriverDropdown("Modify");
 }
 
 function addDriver_click() {
@@ -88,6 +85,8 @@ function pageTripView_show() {
 }
 
 function pageTripDetail_show() {
+    updatestartlocationDropdown("ModifyTrip1");
+    updatendlocationDropdown("ModifyTrip2");
     showOneTrip();
 }
 
@@ -104,7 +103,25 @@ function pageTrailerView_show() {
 }
 
 function pageTrailerDetail_show() {
+    updategoodsDropdown("ModifyTrailer");
     showOneTrailer();
+}
+
+function addTruck_show() {
+    updatedropDrDropdown("AddTruck");
+    AddTruckpageshow();
+
+}
+
+function addTrailer_show() {
+    updategoodsDropdown("AddTrailer");
+    AddTrailerpageshow();
+}
+
+function addTrips_show() {
+    updatestartlocationDropdown("AddTrip1");
+    updatendlocationDropdown("AddTrip2");
+    AddTrippageshow();
 }
 
 function init() {
@@ -113,7 +130,7 @@ function init() {
     $("#btnTripAdd").on("click", addTrip_click);
     $("#btnTrailerAdd").on("click", addTrailer_click);
     $("#btnClearDatabase").on("click", clearDatabaseBtn_click);
-    
+
     //CRUD
     $("#btnDelete").on("click", btnDelete_click);
     $("#btnDeleteDr").on("click", btnDeleteDr_click);
@@ -128,9 +145,9 @@ function init() {
 
     $("#btnCalculateCost").on("click", btnCalculateCost_click);
     $("#btnCalculateCostMod").on("click", btnCalculateCostMod_click);
-    
-    
-    $("#addTruck").on("pageshow", addTruckPage_click); 
+
+
+
     $("#pageTruckView").on("pageshow", pageTruckView_show);
     $("#pageDriverView").on("pageshow", pageDriverView_show);
     $("#pageTrailerView").on("pageshow", pageTrailerView_show);
@@ -139,6 +156,9 @@ function init() {
     $("#pageDriverDetail").on("pageshow", pageDriverDetail_show);
     $("#pageTrailerDetail").on("pageshow", pageTrailerDetail_show);
     $("#pageTripDetail").on("pageshow", pageTripDetail_show);
+    $("#addTruck").on("pageshow", addTruck_show);
+    $("#addTrailer").on("pageshow", addTrailer_show);
+    $("#addTrips").on("pageshow", addTrips_show);
 }
 
 $(document).ready(function () {

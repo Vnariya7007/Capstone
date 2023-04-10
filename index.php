@@ -1,5 +1,5 @@
 <?php
-// We need to use sessions, so you should always start sessions using the below code.
+//  to use sessions
 session_start();
 // If the user is not logged in redirect to the login page...
 if (!isset($_SESSION['loggedin'])) {
@@ -43,7 +43,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>
@@ -109,7 +108,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>
@@ -133,12 +131,6 @@ if (!isset($_SESSION['loggedin'])) {
 
                 <label for="cmbType1">Assigned Driver:</label>
                 <select name="cmbType1" id="cmbType1">
-                    <option value="">Select</option>
-                    <option value="GT">George Taylor</option>
-                    <option value="CK">Clark Kent</option>
-                    <option value="BA">Barry Allen</option>
-                    <option value="AM">Arthur Morgan</option>
-                    <option value="HS">Harvey Specter</option>
                 </select>
 
                 <button type="button" id="btnTruckAdd" name="btnTruckAdd" data-icon="plus" class="ui-btn-active">Add
@@ -163,7 +155,7 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
+
             </ul>
         </div>
     </header>
@@ -207,8 +199,7 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageHome" data-icon="home">Home</a></li>
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
-                <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
+                <li><a href="#" data-icon="star">Contact</a></li>
             </ul>
         </div>
     </header>
@@ -229,22 +220,10 @@ if (!isset($_SESSION['loggedin'])) {
 
                 <label for="cmbTypeTripStart">Starting Location:</label>
                 <select name="cmbTypeTripStart" id="cmbTypeTripStart">
-                    <option value="OT">Select</option>
-                    <option value="GT">George Taylor</option>
-                    <option value="CK">Clark Kent</option>
-                    <option value="BA">Barry Allen</option>
-                    <option value="AM">Arthur Morgan</option>
-                    <option value="HS">Harvey Specter</option>
                 </select>
 
                 <label for="cmbTypeTripEnd">Ending Location:</label>
                 <select name="cmbTypeTripEnd" id="cmbTypeTripEnd">
-                    <option value="OT">Select</option>
-                    <option value="GT"> Taylor</option>
-                    <option value="CK"> Kent</option>
-                    <option value="BA"> Allen</option>
-                    <option value="AM"> Morgan</option>
-                    <option value="HS"> Specter</option>
                 </select>
 
 
@@ -289,8 +268,7 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageHome" data-icon="home">Home</a></li>
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
-                <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
+                <li><a href="#" data-icon="star">Contact</a></li>
             </ul>
         </div>
     </header>
@@ -308,12 +286,6 @@ if (!isset($_SESSION['loggedin'])) {
 
                 <label for="cmbTypeTrailerGoods">Goods Type:</label>
                 <select name="cmbTypeTrailerGoods" id="cmbTypeTrailerGoods">
-                    <option value="OT">Select</option>
-                    <option value="GT">George Taylor</option>
-                    <option value="CK">Clark Kent</option>
-                    <option value="BA">Barry Allen</option>
-                    <option value="AM">Arthur Morgan</option>
-                    <option value="HS">Harvey Specter</option>
                 </select>
 
 
@@ -339,7 +311,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>
@@ -361,12 +332,6 @@ if (!isset($_SESSION['loggedin'])) {
 
             <label for="cmbType1Mod">Assigned Driver:</label>
             <select name="cmbType1Mod" id="cmbType1Mod">
-                <option value="OT">Select</option>
-                <option value="GT">George Taylor</option>
-                <option value="CK">Clark Kent</option>
-                <option value="BA">Barry Allen</option>
-                <option value="AM">Arthur Morgan</option>
-                <option value="HS">Harvey Specter</option>
             </select>
 
 
@@ -398,7 +363,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>
@@ -448,7 +412,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>
@@ -465,6 +428,13 @@ if (!isset($_SESSION['loggedin'])) {
             <label for="txtTripEndDateMod">End Date:</label>
             <input type="date" id="txtTripEndDateMod" name="txtTripEndDateMod" data-clear-btn="true">
 
+            <label for="cmbTypeTripStartMod">Starting Location:</label>
+            <select name="cmbTypeTripStartMod" id="cmbTypeTripStartMod">
+            </select>
+
+            <label for="cmbTypeTripEndMod">Ending Location:</label>
+            <select name="cmbTypeTripEndMod" id="cmbTypeTripEndMod">
+            </select>
 
 
             <label for="txtTripDistMod">Trip Distance (in km):</label>
@@ -511,7 +481,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>
@@ -527,12 +496,6 @@ if (!isset($_SESSION['loggedin'])) {
 
             <label for="cmbTypeTrailerGoodsMod">Goods Type:</label>
             <select name="cmbTypeTrailerGoodsMod" id="cmbTypeTrailerGoodsMod">
-                <option value="OT">Select</option>
-                <option value="GT">George Taylor</option>
-                <option value="CK">Clark Kent</option>
-                <option value="BA">Barry Allen</option>
-                <option value="AM">Arthur Morgan</option>
-                <option value="HS">Harvey Specter</option>
             </select>
 
 
@@ -564,7 +527,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid" class="ui-button-active ui-state-persist">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>
@@ -616,7 +578,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
 
         </div>
@@ -657,7 +618,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
 
         </div>
@@ -698,7 +658,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
 
         </div>
@@ -739,7 +698,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
 
         </div>
@@ -780,7 +738,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear" class="ui-button-active ui-state-persist">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>
@@ -804,7 +761,6 @@ if (!isset($_SESSION['loggedin'])) {
                 <li><a href="#pageAllData" data-icon="grid">View Data</a></li>
                 <li><a href="#pageSettings" data-icon="gear">Settings</a></li>
                 <li><a href="#pageContact" data-icon="star" class="ui-button-active ui-state-persist">Contact</a></li>
-                <!-- change this href above later to contact or anything else-->
             </ul>
         </div>
     </header>

@@ -3,9 +3,9 @@ function showCalculatedCost(){
     var dist = parseFloat($("#txtTripDist").val());
     var fuelEff = parseFloat($("#txtTripFuelEff").val());
     var price = parseFloat($("#txtTripFuelPrice").val());
-    
+
     var consumed = dist * (fuelEff/100)
-    
+
     $("#txtFuelCost").val(consumed*price);
 }
 // calculate fuel cost on modify page
@@ -25,13 +25,13 @@ function addTruckForm() {
         var dateOfPurchase = $("#txtPurchaseAdd").val();
         var makeAndModel = $("#txtMakeAndModel").val();
         var vinNum = $("#txtVinAdd").val();
-        var dropDrId = $("#cmbType1").val();
-        var options = [truckNumber, dateOfPurchase, makeAndModel, vinNum, dropDrId];
+        var assignedId = $("#cmbType1").val();
+        var options = [truckNumber, dateOfPurchase, makeAndModel, vinNum, assignedId];
 
         // console.info(`${truckNumber} ${dateOfPurchase} ${makeAndModel}  ${vinNum}`);
         function callback() {
             console.info("Success: Record inserted successfully");
-            alert("New Detail Added");
+            alert("New Truck Added");
         }
 
         Truck.insert(options, callback);
@@ -45,7 +45,8 @@ function addTrailerForm() {
         console.log("Add Trailer form is valid");
         var TrailerNo = $("#txtTraNumAdd").val();
         var DateOfPurchase = $("#txtTraDateAdd").val();
-        var options = [TrailerNo, DateOfPurchase];
+        var goodsId = $("#cmbTypeTrailerGoods").val();
+        var options = [TrailerNo, DateOfPurchase, goodsId];
 
         function callback() {
             console.info("Success: Record inserted successfully");
@@ -85,11 +86,13 @@ function addTripForm() {
         var truckNumber = $("#txtTripTruckNumberAdd").val();
         var startDate = $("#txtTripStartDate").val();
         var endDate = $("#txtTripEndDate").val();
+        var startId = $("#cmbTypeTripStart").val();
+        var endId = $("#cmbTypeTripEnd").val();
         var tripDistance = $("#txtTripDist").val();
         var fuelEfficiency = $("#txtTripFuelEff").val();
         var fuelPrice = $("#txtTripFuelPrice").val();
         var fuelCost = $("#txtFuelCost").val();
-        var options = [truckNumber, startDate, endDate, tripDistance, fuelEfficiency, fuelPrice, fuelCost];
+        var options = [truckNumber, startDate, endDate, startId, endId, tripDistance, fuelEfficiency, fuelPrice, fuelCost];
 
         function callback() {
             console.info("Success: Record inserted successfully");
@@ -181,9 +184,9 @@ function updateTruck() {
         var dateOfPurchase = $("#txtPurchaseAddMod").val();
         var makeAndModel = $("#txtMakeAndModelMod").val();
         var vinNum = $("#txtVinAddMod").val();
-        var dropDrId = $("#cmbType1Mod").val();
+        var assignedId = $("#cmbType1Mod").val();
 
-        var options = [truckNumber, dateOfPurchase, makeAndModel, vinNum, dropDrId, id];
+        var options = [truckNumber, dateOfPurchase, makeAndModel, vinNum, assignedId, id];
 
         function callback() {
             console.info("Record updated successfully");
@@ -197,6 +200,60 @@ function updateTruck() {
     }
 }
 
+function updatedropDrDropdown(form) {
+
+    var options = [];
+
+    function callback(tx, results) {
+        if (form === "AddTruck") {
+            var htmlCode1 = "";
+            for (var y = 0; y < results.rows.length; y++) {
+                var row1 = results.rows[y];
+                htmlCode1 += `<option value = ${row1['id']}> ${row1['name']}</option>`
+            }
+            var lv1 = $("#cmbType1");
+            lv1 = lv1.html(htmlCode1);
+            lv1.selectmenu("refresh");
+        } else if (form === "ModifyTruck") {
+            var htmlCode = "";
+            for (var i = 0; i < results.rows.length; i++) {
+                var row = results.rows[i];
+                htmlCode += `<option value = ${row['id']}> ${row['name']}</option>`
+            }
+            var lv = $("#cmbType1Mod");
+            lv = lv.html(htmlCode);
+            lv.selectmenu("refresh");
+        }
+    }
+
+
+    dropDr.selectAll(options, callback);
+
+
+}
+
+function AddTruckpageshow(){
+    $("#txtNumAdd").val("");
+    $("#txtPurchaseAdd").val("");
+    $("#txtMakeAndModel").val("");
+    $("#txtVinAdd").val("");
+}
+
+function AddTrailerpageshow(){
+    $("#txtTraNumAdd").val("");
+    $("#txtTraDateAdd").val("");
+}
+
+function AddTrippageshow(){
+    $("#txtTripTruckNumberAdd").val("");
+    $("#txtTripStartDate").val("");
+    $("#txtTripEndDate").val("");
+    $("#txtTripDist").val("");
+    $("#txtTripFuelEff").val("");
+    $("#txtTripFuelPrice").val("");
+    $("#txtFuelCost").val("");
+}
+
 function updateTrailer() {
     if (doValidate_modTrailerForm()) {
         console.log("Modify Trailer Form is valid");
@@ -206,7 +263,8 @@ function updateTrailer() {
 
         var TrailerNo = $("#txtTraNumAddMod").val();
         var DateOfPurchase = $("#txtTraDateAddMod").val();
-        var options = [TrailerNo, DateOfPurchase, id];
+        var goodsId = $("#cmbTypeTrailerGoodsMod").val();
+        var options = [TrailerNo, DateOfPurchase, goodsId, id];
 
 
         function callback() {
@@ -255,11 +313,13 @@ function updateTrip() {
         var truckNumber = $("#txtTripTruckNumberAddMod").val();
         var startDate = $("#txtTripStartDateMod").val();
         var endDate = $("#txtTripEndDateMod").val();
+        var startId = $("#cmbTypeTripStartMod").val();
+        var endId = $("#cmbTypeTripEndMod").val();
         var tripDistance = $("#txtTripDistMod").val();
         var fuelEfficiency = $("#txtTripFuelEffMod").val();
         var fuelPrice = $("#txtTripFuelPriceMod").val();
         var fuelCost = $("#txtFuelCostMod").val();
-        var options = [truckNumber, startDate, endDate, tripDistance, fuelEfficiency, fuelPrice, fuelCost, id];
+        var options = [truckNumber, startDate, endDate, startId, endId, tripDistance, fuelEfficiency, fuelPrice, fuelCost, id];
 
         function callback() {
             console.info("Record updated successfully");
@@ -287,21 +347,22 @@ function showOneTruck() {
         var dateOfPurchase = row['dateOfPurchase'];
         var makeAndModel = row['makeAndModel'];
         var vinNum = row['vinNum'];
-        var dropDrId = row['dropDrId'];
+        var assignedId = row['assignedId'];
 
-        console.info(`id: ${id} truckNumber: ${truckNumber} dateOfPurchase: ${dateOfPurchase} makeAndModel: ${makeAndModel} vinNum: ${vinNum}`);
+        console.info(`id: ${id} truckNumber: ${truckNumber} dateOfPurchase: ${dateOfPurchase} makeAndModel: ${makeAndModel} vinNum: ${vinNum} assignedId: ${assignedId}`);
 
         $("#txtNumAddMod").val(truckNumber);
         $("#txtPurchaseAddMod").val(dateOfPurchase);
         $("#txtMakeAndModelMod").val(makeAndModel);
         $("#txtVinAddMod").val(vinNum);
-        $("#cmbType1Mod").val(dropDrId);
-        $("#cmbType1Mod").selectmenu('refresh');
+        $("#cmbType1Mod").val(assignedId);
+        $("#cmbType1Mod").selectmenu("refresh");
 
     }
 
     Truck.select(options, callback);
 }
+
 function showOneTrailer() {
     // var id = $("#txtId").val();
     var id = localStorage.getItem("id");
@@ -315,16 +376,48 @@ function showOneTrailer() {
         var row = results.rows[0];
         var TrailerNo = row['TrailerNo'];
         var DateOfPurchase = row['DateOfPurchase'];
-
-        console.info(`id: ${id} TrailerNo: ${TrailerNo} DateOfPurchase: ${DateOfPurchase}`);
+        var goodsId = row['goodsId'];
+        console.info(`id: ${id} TrailerNo: ${TrailerNo} DateOfPurchase: ${DateOfPurchase} goodsId: ${goodsId}`);
 
         $("#txtTraNumAddMod").val(TrailerNo);
         $("#txtTraDateAddMod").val(DateOfPurchase);
+        $("#cmbTypeTrailerGoodsMod").val(goodsId);
+        $("#cmbTypeTrailerGoodsMod").selectmenu("refresh");
 
     }
 
     Trailer.select(options, callback);
 }
+
+function updategoodsDropdown(form) {
+
+    var options = [];
+
+    function callback(tx, results) {
+        if (form === "AddTrailer") {
+            var htmlCode1 = "";
+            for (var y = 0; y < results.rows.length; y++) {
+                var row1 = results.rows[y];
+                htmlCode1 += `<option value = ${row1['id']}> ${row1['name']}</option>`
+            }
+            var lv1 = $("#cmbTypeTrailerGoods");
+            lv1 = lv1.html(htmlCode1);
+            lv1.selectmenu("refresh");
+        } else if (form === "ModifyTrailer") {
+            var htmlCode = "";
+            for (var i = 0; i < results.rows.length; i++) {
+                var row = results.rows[i];
+                htmlCode += `<option value = ${row['id']}> ${row['name']}</option>`
+            }
+            var lv = $("#cmbTypeTrailerGoodsMod");
+            lv = lv.html(htmlCode);
+            lv.selectmenu("refresh");
+        }
+    }
+    Goods.selectAll(options, callback);
+}
+
+
 
 function showOneDriver() {
     // var id = $("#txtId").val();
@@ -366,20 +459,26 @@ function showOneTrip() {
         var truckNumber = row['truckNumber'];
         var startDate = row['startDate'];
         var endDate = row['endDate'];
+        var startId = row['startId'];
+        var endId = row['endId'];
         var tripDistance = row['tripDistance'];
         var fuelEfficiency = row['fuelEfficiency'];
         var fuelPrice = row['fuelPrice'];
         var fuelCost = row['fuelCost'];
 
-        console.info(`id: ${id} truckNumber: ${truckNumber} startDate: ${startDate} endDate: ${endDate} tripDistance: ${tripDistance} fuelEfficiency: ${fuelEfficiency} fuelPrice: ${fuelPrice} fuelCost: ${fuelCost}`);
+        console.info(`id: ${id} truckNumber: ${truckNumber} startDate: ${startDate} endDate: ${endDate} startId: ${startId} endId: ${endId} tripDistance: ${tripDistance} fuelEfficiency: ${fuelEfficiency} fuelPrice: ${fuelPrice} fuelCost: ${fuelCost}`);
 
-       $("#txtTripTruckNumberAddMod").val(truckNumber);
-       $("#txtTripStartDateMod").val(startDate);
-       $("#txtTripEndDateMod").val(endDate);
-       $("#txtTripDistMod").val(tripDistance);
-       $("#txtTripFuelEffMod").val(fuelEfficiency);
-       $("#txtTripFuelPriceMod").val(fuelPrice);
-       $("#txtFuelCostMod").val(fuelCost);
+        $("#txtTripTruckNumberAddMod").val(truckNumber);
+        $("#txtTripStartDateMod").val(startDate);
+        $("#txtTripEndDateMod").val(endDate);
+        $("#cmbTypeTripStartMod").val(startId);
+        $("#cmbTypeTripStartMod").selectmenu("refresh");
+        $("#cmbTypeTripEndMod").val(endId);
+        $("#cmbTypeTripEndMod").selectmenu("refresh");
+        $("#txtTripDistMod").val(tripDistance);
+        $("#txtTripFuelEffMod").val(fuelEfficiency);
+        $("#txtTripFuelPriceMod").val(fuelPrice);
+        $("#txtFuelCostMod").val(fuelCost);
 
     }
 
@@ -400,7 +499,8 @@ function showAllTruck() {
             var dateOfPurchase = row['dateOfPurchase'];
             var makeAndModel = row['makeAndModel'];
             var vinNum = row['vinNum'];
-            console.info(`id: ${id} truckNumber: ${truckNumber} dateOfPurchase: ${dateOfPurchase} makeAndModel: ${makeAndModel} vinNum: ${vinNum}`);
+            var assignedId = row['assignedId'];
+            console.info(`id: ${id} truckNumber: ${truckNumber} dateOfPurchase: ${dateOfPurchase} makeAndModel: ${makeAndModel} vinNum: ${vinNum} assignedId: ${assignedId}`);
             htmlCode += `<li>
                             <a data-role="button" data-row-id=${row['id']} href="#">
                                 <h1>Truck Number: ${truckNumber}</h1>
@@ -438,7 +538,8 @@ function showAllTrailer() {
             var id = row['id'];
             var TrailerNo = row['TrailerNo'];
             var DateOfPurchase = row['DateOfPurchase'];
-            console.info(`id: ${id} TrailerNo: ${TrailerNo} DateOfPurchase: ${DateOfPurchase}`);
+            var goodsId = row['goodsId'];
+            console.info(`id: ${id} TrailerNo: ${TrailerNo} DateOfPurchase: ${DateOfPurchase} goodsId: ${goodsId}`);
             htmlCode += `<li>
                             <a data-role="button" data-row-id=${row['id']} href="#">
                                 <h1>Trailer Number: ${TrailerNo}</h1>
@@ -462,6 +563,62 @@ function showAllTrailer() {
     }
 
     Trailer.selectAll(options, callback);
+}
+
+function updatestartlocationDropdown(form) {
+
+    var options = [];
+
+    function callback(tx, results) {
+        if (form === "AddTrip1") {
+            var htmlCode1 = "";
+            for (var y = 0; y < results.rows.length; y++) {
+                var row1 = results.rows[y];
+                htmlCode1 += `<option value = ${row1['id']}> ${row1['name']}</option>`
+            }
+            var lv1 = $("#cmbTypeTripStart");
+            lv1 = lv1.html(htmlCode1);
+            lv1.selectmenu("refresh");
+        } else if (form === "ModifyTrip1") {
+            var htmlCode = "";
+            for (var i = 0; i < results.rows.length; i++) {
+                var row = results.rows[i];
+                htmlCode += `<option value = ${row['id']}> ${row['name']}</option>`
+            }
+            var lv = $("#cmbTypeTripStartMod");
+            lv = lv.html(htmlCode);
+            lv.selectmenu("refresh");
+        }
+    }
+    Location.selectAll(options, callback);
+}
+
+function updatendlocationDropdown(form) {
+
+    var options = [];
+
+    function callback(tx, results) {
+        if (form === "AddTrip2") {
+            var htmlCode1 = "";
+            for (var y = 0; y < results.rows.length; y++) {
+                var row1 = results.rows[y];
+                htmlCode1 += `<option value = ${row1['id']}> ${row1['name']}</option>`
+            }
+            var lv1 = $("#cmbTypeTripEnd");
+            lv1 = lv1.html(htmlCode1);
+            lv1.selectmenu("refresh");
+        } else if (form === "ModifyTrip2") {
+            var htmlCode = "";
+            for (var i = 0; i < results.rows.length; i++) {
+                var row = results.rows[i];
+                htmlCode += `<option value = ${row['id']}> ${row['name']}</option>`
+            }
+            var lv = $("#cmbTypeTripEndMod");
+            lv = lv.html(htmlCode);
+            lv.selectmenu("refresh");
+        }
+    }
+    Location.selectAll(options, callback);
 }
 
 function showAllDriver() {
@@ -516,12 +673,14 @@ function showAllTrip() {
             var truckNumber = row['truckNumber'];
             var startDate = row['startDate'];
             var endDate = row['endDate'];
+            var startId = row['startId'];
+            var endId = row['endId'];
             var tripDistance = row['tripDistance'];
             var fuelEfficiency = row['fuelEfficiency'];
             var fuelPrice = row['fuelPrice'];
             var fuelCost = row['fuelCost'];
 
-            console.info(`id: ${id} truckNumber: ${truckNumber} startDate: ${startDate} endDate: ${endDate} tripDistance: ${tripDistance} fuelEfficiency: ${fuelEfficiency} fuelPrice: ${fuelPrice} fuelCost: ${fuelCost}`);
+            console.info(`id: ${id} truckNumber: ${truckNumber} startDate: ${startDate} endDate: ${endDate} startId: ${startId} endId: ${endId} tripDistance: ${tripDistance} fuelEfficiency: ${fuelEfficiency} fuelPrice: ${fuelPrice} fuelCost: ${fuelCost}`);
             htmlCode += `<li>
                             <a data-role="button" data-row-id=${row['id']} href="#">
                                 <h1>Truck Number: ${truckNumber}</h1>
@@ -546,36 +705,4 @@ function showAllTrip() {
     }
 
     Trip.selectAll(options, callback);
-}
-//for drop down
-function updateDriverDropdown(form) {
-
-    var options = [];
-
-    function callback(tx, results) {
-        if (form === "Add") {
-            var htmlCode1 = "";
-            for (var y = 0; y < results.rows.length; y++) {
-                var row1 = results.rows[y];
-                htmlCode1 += `<option value = ${row1['id']}> ${row1['name']}</option>`
-            }
-            var lv1 = $("#cmbType1");
-            lv1 = lv1.html(htmlCode1);
-            lv1.selectmenu("refresh");
-        } else if (form === "Modify") {
-            var htmlCode = "";
-            for (var i = 0; i < results.rows.length; i++) {
-                var row = results.rows[i];
-                htmlCode += `<option value = ${row['id']}> ${row['name']}</option>`
-            }
-            var lv = $("#cmbType1Mod");
-            lv = lv.html(htmlCode);
-            lv.selectmenu("refresh");
-        }
-    }
-
-
-    DropDr.selectAll(options, callback);
-
-
 }
