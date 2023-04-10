@@ -28,7 +28,7 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 	exit('Email is not valid!');
 }
 if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['username']) == 0) {
-    exit('<script>alert("Welcome to Geeks for Geeks")</script>');
+    exit('<script>alert("Username Already Exists! ")</script>');
 }
 if (strlen($_POST['password']) > 20 || strlen($_POST['password']) < 5) {
 	exit('Password must be between 5 and 20 characters long!');
@@ -42,7 +42,7 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
 	// Store the result so we can check if the account exists in the database.
 	if ($stmt->num_rows > 0) {
 		// Username already exists
-		echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+		echo '<script>alert("Username Already Exists!")</script>';
 	} else {
 		// Username doesn't exists, insert new account
 if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {

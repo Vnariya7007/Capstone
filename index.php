@@ -30,11 +30,7 @@ if (!isset($_SESSION['loggedin'])) {
     <!-- <link rel="stylesheet" href="style.css"> -->
 
 </head>
-<!--todo:-->
-<!--1. homepage nav contact href.-->
-<!--2.build and add pages for image 5 and 6.-->
-<!--3. database is left.-->
-<!--4. TIP: JUST REMOVE THE VALUE AND KEEP IT EMPTY (<SELECT AN OPTION>) FROM DROPDOWN SELECT TO VALIDATE REQUIRED PROPERTY-->
+
 <body>
 
 <!-------------------------------------------------Home page------------------------------------------------->
