@@ -1,0 +1,71 @@
+/* What are media queries? */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries */
+
+/* Common Device Resolutions and Breakpoints */
+:root {
+    --xs-res: 375px;
+    --sm-res: 640px;
+    --md-res: 768px;
+    --lg-res: 1024px;
+    --xl-res: 1280px;
+    --2xl-res: 1536px;
+
+    --gray-0: #f8f9fa;
+    --gray-100: #f1f3f5;
+    --gray-600: #868e96;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+
+    --blue-800: #1971c2;
+
+    --font-sm: 0.85rem;
+    --font-lg: 1.25rem;
+
+    font-family: 'Poppins', sans-serif;
+}
+#btnDelete{
+    background-color: rgb(190 18 60);
+    color:white;
+}
+
+#btnUpdate{
+    background-color: rgb(28 132 199);
+}
+label.error {
+    color: #F00;
+    font-weight: bold;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border: 2px red solid;
+}
+
+.card-container {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: baseline;
+}
+
+.card {
+    display: flex;
+
+    border-radius: 8px;
+}
+
+
+.card-image {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+/*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+
+
+
