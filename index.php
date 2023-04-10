@@ -814,7 +814,7 @@ if (!isset($_SESSION['loggedin'])) {
     </header>
     
     <section data-role="content">
-        <ul data-role="" id="listviewInfo" class="ui-listview-inset">
+        <ul data-role="listview" id="listviewInfo" class="ui-listview-inset">
             <li>
             <a class="ui-btn">
                 <img src="images/nehal.png" alt="Nehal">
